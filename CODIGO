@@ -1,9 +1,10 @@
-FONTE DE CONSULTA: DOCUMENTAÇAO SPARK 
+#FONTE DE CONSULTA: DOCUMENTAÇAO SPARK 
+#https://spark.apache.org/docs/2.1.0/sql-programming-guide.html
 
 
-1.Número de hosts únicos(ARQUIVO JULHO)  = 81982
+#1.Número de hosts únicos(ARQUIVO JULHO)  = 81982
 
-#PYSPARK ONVERTI O TXT EM UM DATA FRAME PARA REALIZAR UMA QUERY BASICA
+#PYSPARK CONVERTI O TXT EM UM DATA FRAME PARA REALIZAR UMA QUERY BASICA
 
 from pyspark.sql.types import *
 sc = spark.sparkContext
