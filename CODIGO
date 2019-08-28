@@ -6,7 +6,7 @@
 #1.Número de hosts únicos(ARQUIVO JULHO)  = 81982 HOSTS
 #APLICANDO O MEMSO CÓDIGO ABAIXO PARA O ARQUIVO AGOSTO = 75060 HOSTS
 
-#NO CODIGO PYSPARK ABAIXO CRIEI UM DATAFRAME A PARTIR DO ARQUIVO PARA REALIZAR UMA QUERY BASICA
+#NO CODIGO PYSPARK ABAIXO CRIEI UM DATAFRAME A PARTIR DO ARQUIVO PARA REALIZAR UMA QUERY 
 
 from pyspark.sql.types import *
 sc = spark.sparkContext
@@ -51,3 +51,27 @@ scala> val agosto= sc.textFile("/Users/Paulo/Downloads/NASA_access_log_Aug95")
 scala> val errosagosto = agosto.filter(line=>line.contains("404 "))
 scala> errosagosto.count()
 res1: Long = 10057   
+
+
+
+#CONSIDERAÇOES 
+
+APÓS A PRIMEIRA IMPLEMENTAÇÃO DOS DATAFRAMES, VERIFIQUEI QUE PARA CONSIDRERAR O DELIMITADOR " "(ESPAÇO) 
+E EXIBIR TODAS AS INFORMAÇÕES TABULARMENTE, SÃO NECESSÁRIOS 10 CAMPOS
+
+#apos modificar a quantidade de campos no trecho ilustrado a seguir:
+hosts = parts.map(lambda p: (p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8],p[9].strip()))
+schemaString = "HOST DUMB DUMB1 DATA TIMEZONE ACAO ENDERECO PROTOCOL  CODIGO BYTES"
+
+>>> result = spark.sql("SELECT * FROM hosts")
+>>> result.show()
++--------------------+----+-----+--------------------+--------+----+--------------------+---------+------+-----+
+|                HOST|DUMB|DUMB1|                DATA|TIMEZONE|ACAO|            ENDERECO| PROTOCOL|CODIGO|BYTES|
++--------------------+----+-----+--------------------+--------+----+--------------------+---------+------+-----+
+|        199.72.81.55|   -|    -|[01/Jul/1995:00:0...|  -0400]|"GET|    /history/apollo/|HTTP/1.0"|   200| 6245|
+
+CONSEGUI RETORNAR TODAS AS INFORMAÇÕES DESEJADAS PORÉM AS QUERIES COM FILTROS DEIXAM DE FUNCIONAR DEVIDO AO ERRO :
+IndexError: list index out of range
+
+Não localizei um workaround o que impossibilitou a solução das outras 3 questões.
+
