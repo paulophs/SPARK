@@ -1,11 +1,12 @@
-#FONTE DE CONSULTA: DOCUMENTAÇAO SPARK 
+#FONTE DE CONSULTA: DOCUMENTAÇAO SPARK  E stackoverflow
 #https://spark.apache.org/docs/2.1.0/sql-programming-guide.html
+#https://stackoverflow.com
 
 
 #1.Número de hosts únicos(ARQUIVO JULHO)  = 81982 HOSTS
 #APLICANDO O MEMSO CÓDIGO ABAIXO PARA O ARQUIVO AGOSTO = 75060 HOSTS
 
-#PYSPARK CONVERTI O TXT EM UM DATA FRAME PARA REALIZAR UMA QUERY BASICA
+#NO CODIGO PYSPARK ABAIXO CRIEI UM DATAFRAME A PARTIR DO ARQUIVO PARA REALIZAR UMA QUERY BASICA
 
 from pyspark.sql.types import *
 sc = spark.sparkContext
@@ -35,7 +36,6 @@ results.show()
 +--------------------+
 
 2. O TOTAL DE ERROS 404 
-
 
 julho = 10846
 agosto = 10057
