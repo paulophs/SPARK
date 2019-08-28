@@ -2,7 +2,8 @@
 #https://spark.apache.org/docs/2.1.0/sql-programming-guide.html
 
 
-#1.Número de hosts únicos(ARQUIVO JULHO)  = 81982
+#1.Número de hosts únicos(ARQUIVO JULHO)  = 81982 HOSTS
+#APLICANDO O MEMSO CÓDIGO ABAIXO PARA O ARQUIVO AGOSTO = 75060 HOSTS
 
 #PYSPARK CONVERTI O TXT EM UM DATA FRAME PARA REALIZAR UMA QUERY BASICA
 
