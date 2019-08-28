@@ -1,0 +1,40 @@
+FONTE DE CONSULTA: DOCUMENTAÇAO SPARK 
+
+
+1.Número de hosts únicos(ARQUIVO JULHO)  = 81982
+
+#PYSPARK ONVERTI O TXT EM UM DATA FRAME PARA REALIZAR UMA QUERY BASICA
+
+from pyspark.sql.types import *
+sc = spark.sparkContext
+lines =sc.textFile("/Users/Paulo/Downloads/NASA_access_log_Jul95")
+
+#VERIFICANDO A ESTRUTURA DA PRIMEIRA LINHA DO ARQUIVO
+lines.first()
+
+parts = lines.map(lambda l: l.split(" "))
+
+#UTILIZANDO O NÚMERO DE CAMPOS PRESUMIDO OU CONSULTAR A PRIMEIRA LINHA DO ARQUIVO 
+hosts = parts.map(lambda p: (p[0], p[1],p[2],p[3],p[4],p[5],p[6].strip()))
+
+schemaString = "HOST DUMB DUMB1 DATA REQ CODIGO TOTAL"
+fields = [StructField(field_name, StringType(), True) for field_name in schemaString.split()]
+schema = StructType(fields)
+schemaHosts = spark.createDataFrame(hosts,schema)
+schemaHosts.createOrReplaceTempView("hosts")
+
+#QUERY RETORNANDO QUANTIDADE DE HOSTS DISTINTOS
+results =  spark.sql("SELECT COUNT(DISTINCT HOST) FROM hosts")
+results.show()
++--------------------+                                                          
+|count(DISTINCT HOST)|
++--------------------+
+|               81982|
++--------------------+
+
+2. O total de erros 404 = 10846
+#SCALA
+scala> val nasajulho = sc.textFile("/Users/Paulo/Downloads/NASA_access_log_Jul95")
+scala> val errosjulho = nasajulho.filter(line => line.contains("404 "))
+scala> errosjulho.count()
+res3: Long = 10846 
