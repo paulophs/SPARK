@@ -33,9 +33,20 @@ results.show()
 |               81982|
 +--------------------+
 
-2. O total de erros 404 = 10846
-#SCALA
+2. O TOTAL DE ERROS 404 
+
+
+julho = 10846
+agosto = 10057
+
+#SCALA julho
 scala> val nasajulho = sc.textFile("/Users/Paulo/Downloads/NASA_access_log_Jul95")
 scala> val errosjulho = nasajulho.filter(line => line.contains("404 "))
 scala> errosjulho.count()
 res3: Long = 10846 
+
+#SCALA agosto
+scala> val agosto= sc.textFile("/Users/Paulo/Downloads/NASA_access_log_Aug95")
+scala> val errosagosto = agosto.filter(line=>line.contains("404 "))
+scala> errosagosto.count()
+res1: Long = 10057   
